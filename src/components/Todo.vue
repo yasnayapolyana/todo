@@ -13,7 +13,8 @@
       <ul>
         <transition-group name='list' enter-active-class="animated fadeInRight" leave-active-class="animated fadeOutRight">
         <li v-for="(data, index) in tasks" :key='index'>{{ data.task }}
-          <i class="fa fa-check-circle" @click="remove(index)"></i>
+          <!-- <i class="fa fa-check-circle" @click="done"></i> -->
+          <i class="fa fa-trash" @click="remove(index)"></i>
         </li>
       </transition-group>
       </ul>
@@ -29,12 +30,13 @@ export default {
   data () {
     return {
       task: '',
+      status: false,
       tasks: []
     }
   },
   methods: {
     addTask () {
-        this.tasks.push({task: this.task})
+        this.tasks.push({task: this.task, status: false})
         this.task = '';
     },
     remove (id) {
@@ -109,6 +111,12 @@ export default {
 
   i {
     float: right;
+    padding-right: 15px;
     cursor: pointer;
   }
+
+  .strike {
+    text-decoration: line-through;
+    color: #aaa;
+}
 </style>
